@@ -259,16 +259,42 @@
   (
   	memorandumID(PK),//全局检索id
   	Headline，//标题
-  	Type,//ddl 备忘录 出行 打卡 四种类型
-  	userID,
+  	username,
   	Content,//限制300字
+  	date	
+  )
+  ```
+
+- 提醒表
+
+  ```
+  reminder(
+  	reminderID(PK),
+  	Headline,
+  	Type,
+  	username,
+  	content,
   	Remind,//boolean True/False
-  	Weekday,//星期几
   	Time,//几点
   	Date,//特定日期
   	Status //是否已打卡
+  	
   )
   ```
+
+- 打卡
+
+  ```
+  clockin(
+  	clockID(PK),
+  	username,
+  	content,
+  	location,
+  	date
+  )
+  ```
+
+  
 
 - 用户-语料库表
 
@@ -296,7 +322,14 @@
   )
   ```
 
-  
+
+
+
+### SQLite 数据库设计
+
+设计一个聊天记录cache表
+
+
 
 ### UI设计
 
