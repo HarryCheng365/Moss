@@ -1,3 +1,19 @@
 spring:
   profiles:
     active: prod
+  redis:
+    database: 0
+    host: 47.96.89.99
+    port: 6379
+    password: ytaotao
+
+    jedis:
+      pool:
+        max-wait: -1
+        min-idle: 0
+        max-idle: 5
+        max-active: 8
+
+    timeout: 10000
+    #redis配置结束
+

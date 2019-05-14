@@ -1,72 +1,91 @@
+/**
+ * Demo class
+ *
+ * @author keriezhang
+ * @date 2016/10/31
+ */
+
+
 package whu.software.moss.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//@javax.persistence.Entity
+@javax.persistence.Entity
+@Table(name="memorandum")
 public class Memorandum {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "date", columnDefinition = "varchar(255) CHARACTER SET utf8 DEFAULT NULL")
+
+    @Column(name = "headline", columnDefinition = "varchar(255) CHARACTER SET utf8 DEFAULT NULL")
+    private String headline;
+
+    @Column(name = "content", columnDefinition = "varchar(255) CHARACTER SET utf8 DEFAULT NULL")
+    private String content;
+
+    @Column(name ="date",columnDefinition = "varchar(255) CHARACTER SET utf8 DEFAULT NULL" )
     private String date;
 
-    @Column(name = "feedback", columnDefinition = "varchar(255) CHARACTER SET utf8 DEFAULT NULL")
-    private String feedback;
-    @Column(name = "name", columnDefinition = "varchar(255) CHARACTER SET utf8 DEFAULT NULL")
-    private String name;
-
-
+    @ManyToOne(fetch = FetchType.LAZY,cascade =CascadeType.REMOVE)
+    @JoinColumn(name = "username")
+    private UserInfo userInfo;
     public Memorandum() {
 
     }
 
-    public Memorandum(String feedback, String name) {
+    public Memorandum(String headline,String content,UserInfo userInfo) {
 
-        if (feedback == null || feedback.equals(""))
-            this.feedback = "null";
-        else
-            this.feedback = feedback;
+        this.headline = headline;
+        this.content = content;
         Date temp = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.date = sdf.format(temp);
-        this.name = name;
-
-
-    }
-    public void setId(int id){
-        this.id=id;
+        this.userInfo=userInfo;
 
     }
-    public int getId(){
-        return this.id;
-    }
-    public void setDate(String date){
-        this.date=date;
 
-    }
-    public String getDate(){
-        return this.date;
+    public UserInfo getUserInfo() {
+        return userInfo;
     }
 
-    public void setFeedback(String feedback){
-        this.feedback=feedback;
-
-    }
-    public String getFeedback(){
-        return this.feedback;
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
-    public void setName(String name){
-        this.name=name;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public String getName(){
-        return this.name;
+    public String getDate() {
+        return date;
     }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getHeadline() {
+        return headline;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setHeadline(String headline) {
+        this.headline = headline;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }

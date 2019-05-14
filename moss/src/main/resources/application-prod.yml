@@ -1,6 +1,8 @@
 server:
   port:
     8088
+  connection-timeout: 2000
+
 spring:
   http:
     encoding:
@@ -20,7 +22,7 @@ spring:
     driver-class-name:
       com.mysql.jdbc.Driver
     url:
-      jdbc:mysql://localhost:3306/birth-test?characterEncoding=utf-8
+      jdbc:mysql://47.96.89.99:3306/moss?characterEncoding=utf-8
     username:
       root
     password:
@@ -33,3 +35,6 @@ spring:
       update
     show-sql:
       true
+
+
+

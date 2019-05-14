@@ -1,72 +1,59 @@
 package whu.software.moss.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
+import javax.persistence.*;
+
+
 
 @javax.persistence.Entity
+@Table(name = "account")
 public class Account {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(name = "date", columnDefinition = "varchar(255) CHARACTER SET utf8 DEFAULT NULL")
-    private String date;
+    private String username;
+    @Column(name = "type", columnDefinition = "varchar(255) CHARACTER SET utf8 DEFAULT NULL")
+    private AccountType type;
+    @Column(name = "password", columnDefinition = "varchar(255) CHARACTER SET utf8 DEFAULT NULL")
+    private String password;
 
-    @Column(name = "feedback", columnDefinition = "varchar(255) CHARACTER SET utf8 DEFAULT NULL")
-    private String feedback;
-    @Column(name = "name", columnDefinition = "varchar(255) CHARACTER SET utf8 DEFAULT NULL")
-    private String name;
 
 
     public Account() {
 
     }
 
-    public Account(String feedback, String name) {
+    public Account(String username, AccountType type,String password) {
 
-        if (feedback == null || feedback.equals(""))
-            this.feedback = "null";
-        else
-            this.feedback = feedback;
-        Date temp = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        this.date = sdf.format(temp);
-        this.name = name;
-
+        this.username=username;
+        this.type=type;
+        this.password=password;
 
     }
-    public void setId(int id){
-        this.id=id;
 
-    }
-    public int getId(){
-        return this.id;
-    }
-    public void setDate(String date){
-        this.date=date;
 
-    }
-    public String getDate(){
-        return this.date;
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setFeedback(String feedback){
-        this.feedback=feedback;
-
-    }
-    public String getFeedback(){
-        return this.feedback;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name){
-        this.name=name;
+    public AccountType getType() {
+        return type;
     }
 
-    public String getName(){
-        return this.name;
+    public void setType(AccountType type) {
+        this.type = type;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 }
